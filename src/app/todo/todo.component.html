@@ -8,7 +8,10 @@
       <th>#</th>
       <th>Task</th>
       <th>Note</th>
+      <th>Status</th>
+      <th>Difficulty</th>
       <th></th>
+
     </tr>
     </thead>
     <tbody *ngFor="let task of tasks">
@@ -16,6 +19,8 @@
       <td>{{ task.id }}</td>
       <td>{{ task.title }}</td>
       <td>{{ task.note }}</td>
+      <td>{{ tast.status }}</td>
+      <td>{{ tast.difficulty }}</td>
       <td>
         <button class="btn btn-dark" [routerLink]="['/tasks/', task.id]"><i class="far fa-eye"></i></button>
         <button class="btn btn-dark" (click)="delete(task.id)"><i class="far fa-trash-alt"></i></button>

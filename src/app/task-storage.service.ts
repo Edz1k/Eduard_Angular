@@ -10,17 +10,11 @@ export class TaskStorageService {
 
   tasks: Task[] = [];
 
-  /**
-   * Whether data have already been loaded from storage
-   */
   initialized: boolean = false;
 
   constructor() {
   }
-
-  /**
-   * Returns all tasks
-   */
+  
   getTasks(): Task[] {
     this.init();
     return this.tasks;
@@ -53,7 +47,7 @@ export class TaskStorageService {
    *
    * @param id
    */
-  get(id): Task {
+  get(id: number): Task {
 
     this.init();
 
@@ -74,8 +68,14 @@ export class TaskStorageService {
    * @param title
    * @param note
    */
-  add(title, note) {
-    let task = new Task(title, note, this.getHighestId() + 1);
+  add(data: Task) {
+    const task = new Task(
+      data.title,
+      data.note,
+      this.getHighestId() + 1,
+      data.status,
+      data.difficulty,
+      );
     this.tasks.push(task);
   }
 
@@ -88,11 +88,13 @@ export class TaskStorageService {
    *
    * @return Task
    */
-  update(id, title: string, note: string): Task {
+  update(data: Task): Task {
 
-    let task = this.get(id);
-    task.title = title;
-    task.note = note;
+    const task = this.get(data.id);
+    task.title = data.title;
+    task.note = data.note;
+    task.status = data.status;
+    task.difficulty = data.difficulty;
 
     return task;
   }
@@ -112,7 +114,9 @@ export class TaskStorageService {
         new Task(
           init_tasks[i]['title'],
           init_tasks[i]['note'],
-          init_tasks[i]['id'])
+          init_tasks[i]['id']),
+          init_tasks[i]['status'],
+          init_tasks[i]['difficulty'],
       );
     }
 
