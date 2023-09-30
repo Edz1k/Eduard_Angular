@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {init_tasks} from '../assets/todo-list.json';
+
 import {Task} from "../app/shared/models/task.model";
 
 @Injectable({
@@ -25,7 +26,7 @@ export class TaskStorageService {
    *
    * @param index task index to remove
    */
-  delete(id) {
+  delete(id: number) {
     let remaining_tasks: Task[] = [];
     for (let i = 0; i < this.tasks.length; i++) {
       var current_task = this.tasks[i];

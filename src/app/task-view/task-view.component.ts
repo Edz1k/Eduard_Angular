@@ -20,7 +20,7 @@ export class TaskViewComponent implements OnInit {
    */
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.task = this.storage.get(params.get('id'));
+      this.task = this.storage.get(params.get('id') as unknown as number);
     });
   }
 
@@ -29,7 +29,7 @@ export class TaskViewComponent implements OnInit {
    *
    * @param id task index to remove
    */
-  delete(id): void {
+  delete(id: number): void {
     this.storage.delete(this.task.id);
     this.router.navigate(['/tasks'])
   }

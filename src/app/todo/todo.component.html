@@ -19,8 +19,18 @@
       <td>{{ task.id }}</td>
       <td>{{ task.title }}</td>
       <td>{{ task.note }}</td>
-      <td>{{ tast.status }}</td>
-      <td>{{ tast.difficulty }}</td>
+      <td>
+        <span *ngIf="task.status === 'unfinished'" class="badge bg-danger">Не начата</span>
+        <span *ngIf="task.status === 'pending'" class="badge bg-warning">Выполняется</span>
+        <span *ngIf="task.status === 'finished'" class="badge bg-success">Выполнено</span>
+      </td>
+      <td>
+        <i [ngClass]="{'bi bi-star': task.difficulty > 1, 'bi bi-star-fill': task.difficulty === 1}">{{ task.difficulty }}</i>
+        <i [ngClass]="{'bi bi-star': task.difficulty > 2, 'bi bi-star-fill': task.difficulty === 2}">{{ task.difficulty }}</i>
+        <i [ngClass]="{'bi bi-star': task.difficulty > 3, 'bi bi-star-fill': task.difficulty === 3}">{{ task.difficulty }}</i>
+        <i [ngClass]="{'bi bi-star': task.difficulty > 4, 'bi bi-star-fill': task.difficulty === 4}">{{ task.difficulty }}</i>
+        <i [ngClass]="{'bi bi-star': task.difficulty > 5, 'bi bi-star-fill': task.difficulty === 5}">{{ task.difficulty }}</i>
+      </td>
       <td>
         <button class="btn btn-dark" [routerLink]="['/tasks/', task.id]"><i class="far fa-eye"></i></button>
         <button class="btn btn-dark" (click)="delete(task.id)"><i class="far fa-trash-alt"></i></button>

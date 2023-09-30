@@ -12,7 +12,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class TaskEditComponent implements OnInit {
 
   task: Task;
-  id;
+  id: number;
   title = new FormControl('');
   note = new FormControl('');
   status = new FormControl('');
